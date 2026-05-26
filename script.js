@@ -9,31 +9,32 @@ const playpauseButton = document.getElementById("playpause-song");
 const prevSongButton = document.getElementById("prev-song");
 const nextSongButton = document.getElementById("next-song");
 
-const songe = [
+const songs  = [
   {
-  image: "./album-art1.jpg",
+  image: "./image3.jpg",
   name: "deck the halls",
   artist: "john parry",
   audio: "./deck-the-halls.mp3"
   },
 
   {
-  image: "./album-art1.jpg",
-  name: "deck the halls",
-  artist: "john parry",
+  image: "./image4.jpg",
+  name: "jingle bells",
+  artist: "james lord",
   audio: "./deck-the-halls.mp3"
   },
 
   {
-  image: "./album-art1.jpg",
-  name: "deck the halls",
-  artist: "john parry",
+  image: "./image5.jpg",
+  name: "joy to the world",
+  artist: "issac watts",
   audio: "./deck-the-halls.mp3"
   },
 ];
 
 const audio = document.createElement("audio");
 let currentSongIndex = 0;
+ updateSong();
 
 prevSongButton.addEventListener("click", function(){
   if (currentSongIndex == 0){
@@ -41,6 +42,7 @@ prevSongButton.addEventListener("click", function(){
   }
 
   currentSongIndex --;
+  updateSong();
 
 });
 
@@ -49,6 +51,17 @@ nextSongButton.addEventListener("click", function(){
     return
   }
   currentSongIndex ++;
+  updateSong();
+});
+
+playpauseButton.addEventListener("click", function(){
+  audio.play();
+  if (!audio.pause){
+    audio.pause();
+  }
+  else{
+    audio.play();
+  }
 });
 
 function updateSong(){
@@ -56,5 +69,26 @@ function updateSong(){
   songImage.src = song.image;
   songName.innerText = song.name;
   songArtist.innerText = song.artist;
+
+  audio.src = song.audio; 
+
+  audio.onloadedmetadata = function(){
+
+  
+
+  songSlider.value = 0;
+  songSlider.max = audio.duration;
+  }
 }
+
+songSlider.addEventListener("change", function(){
+  audio.currentTime = songSlider.value;
+});
+
+function moveSlider(){
+  songSlider.value = audio.currentTime;
+
+};
+
+setInterval(moveSlider, 1000);
 
