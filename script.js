@@ -14,21 +14,21 @@ const songs  = [
   image: "./image3.jpg",
   name: "deck the halls",
   artist: "john parry",
-  audio: "./deck-the-halls.mp3"
+  audio: "./Enya1.mp3"
   },
 
   {
   image: "./image4.jpg",
   name: "jingle bells",
   artist: "james lord",
-  audio: "./deck-the-halls.mp3"
+  audio: "./Enya2.mp3"
   },
 
   {
   image: "./image5.jpg",
   name: "joy to the world",
   artist: "issac watts",
-  audio: "./deck-the-halls.mp3"
+  audio: "./Enya3.mp3"
   },
 ];
 
@@ -55,12 +55,12 @@ nextSongButton.addEventListener("click", function(){
 });
 
 playpauseButton.addEventListener("click", function(){
-  audio.play();
-  if (!audio.pause){
+  // audio.play();
+  if (!audio.paused){
     audio.pause();
   }
   else{
-    audio.play();
+    audio.play();                 
   }
 });
 
